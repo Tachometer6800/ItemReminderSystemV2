@@ -15,6 +15,7 @@ Adafruit_PN532 nfc(PN532_IRQ, PN532_RESET);
 
 #define RESET_BUTTON 6
 #define LED 4
+#define BUZZER 5
 
 // --- Known tags ---
 // Store store items in storage instead of RAM
@@ -74,6 +75,7 @@ void showTagList() {
     display.setTextSize(1);
     display.display();
     digitalWrite(LED, LOW);
+    tone(BUZZER, 440, 1000);
     return;
   }
 
@@ -119,6 +121,7 @@ void setup(void) {
 
   pinMode(RESET_BUTTON, INPUT);
   pinMode(LED, OUTPUT);
+  pinMode(BUZZER, OUTPUT);
 
   if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
     Serial.println(F("SSD1306 allocation failed"));
